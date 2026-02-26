@@ -38,3 +38,19 @@ class Paddle:
         # Рух вправо з урахуванням ширини вікна
         if self.x < screen_width - self.width:
             self.x += self.speed
+
+class PhysicsManager:
+    @staticmethod
+    def check_wall_collision(ball, screen_width):
+        # Відскок від лівої (0) та правої (screen_width) стін
+        if ball.x - ball.radius <= 0 or ball.x + ball.radius >= screen_width:
+            ball.bounce_x()
+        
+        # Відскок від верхньої стіни (стелі)
+        if ball.y - ball.radius <= 0:
+            ball.bounce_y()
+
+    @staticmethod
+    def is_ball_out(ball, screen_height):
+        # Перевірка, чи м'яч не впав нижче ракетки
+        return ball.y > screen_height
