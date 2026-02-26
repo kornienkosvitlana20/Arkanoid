@@ -54,3 +54,12 @@ class PhysicsManager:
     def is_ball_out(ball, screen_height):
         # Перевірка, чи м'яч не впав нижче ракетки
         return ball.y > screen_height
+
+        @staticmethod
+    def check_paddle_collision(ball, paddle):
+        # Якщо м'яч торкається прямокутника ракетки
+        if (paddle.x <= ball.x <= paddle.x + paddle.width and
+            paddle.y <= ball.y + ball.radius <= paddle.y + paddle.height):
+            ball.bounce_y()
+            return True
+        return False
